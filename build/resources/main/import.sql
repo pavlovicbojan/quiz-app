@@ -1,0 +1,1 @@
+INSERT INTO app_user (e_mail, first_name, last_name, password, role, username) VALUES('b.pavlovic992@gmail.com', 'Bojan', 'Pavlovic','$2a$10$w13UG.lunE6K7KQpT/9aj.aJRuowWAaBSbHFbWmZZmubSvexHYct6', 'ADMIN', 'bpavlovic');
