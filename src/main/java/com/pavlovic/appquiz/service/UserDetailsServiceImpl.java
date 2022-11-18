@@ -21,10 +21,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-    /* Zelimo da predstavimo korisnika preko UserDetails klase - nacina
-     *  na koji Spring boot predstavlja korisnika. Ucitamo na osnovu korisnickog imena
-     *  korisnika iz nase mysql baze i u okviru UserDetails namapiramo njegove podatke
-     *  - kredencijale i rolu kroz GrantedAuthorities. */
+    /* We want to present user as UserDetails class - this is
+     Spring boot default class. */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -35,9 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } else {
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-            // user moze imati vise od jedne uloge te za svaku ulogu mogu biti definisana prava
+            // user can have more than one ROLE
             String role = "ROLE_" + user.getRole().toString();
-            //String role = user.getUloga().toString();
+
             grantedAuthorities.add(new SimpleGrantedAuthority(role));
 
             return new org.springframework.security.core.userdetails.User(

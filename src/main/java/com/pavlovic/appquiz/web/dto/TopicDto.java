@@ -2,28 +2,18 @@ package com.pavlovic.appquiz.web.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDto {
+public class TopicDto {
 
-    @NonNull
     private Long id;
 
-    @NonNull
-    private String username;
-
-    @NonNull
-    private String email;
-
-    @NonNull
     private String name;
 
-    @NonNull
-    private String lastname;
-
+    private List<QuestionDto> questions;
 }
-

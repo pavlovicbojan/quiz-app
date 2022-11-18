@@ -20,4 +20,10 @@ public interface UserService {
 
     Optional<User> findbyUsername(String username);
 
+    Optional<User> findByEmail(String email);
+
+    Page<User> getAll(int pageNo);
+
+    Optional<User> findOneById(Long id);
+
 }
