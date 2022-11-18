@@ -1,6 +1,5 @@
 package com.pavlovic.appquiz.service;
 
-import com.pavlovic.appquiz.model.Role;
 import com.pavlovic.appquiz.model.User;
 import com.pavlovic.appquiz.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        user.setRole(Role.USER);
         return userRepository.save(user);
     }
 
@@ -48,31 +46,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.findFirstByUsername(username);
     }
 
-//    @Override
-//    public boolean changePassword(Long id, KorisnikPromenaLozinkeDto korisnikPromenaLozinkeDto) {
-//        Optional<Korisnik> rezultat = userRepository.findById(id);
-//
-//        if(!rezultat.isPresent()) {
-//            throw new EntityNotFoundException();
-//        }
-//
-//        Korisnik korisnik = rezultat.get();
-//
-//        if(!korisnik.getKorisnickoIme().equals(korisnikPromenaLozinkeDto.getKorisnickoIme())
-//                || !korisnik.getLozinka().equals(korisnikPromenaLozinkeDto.getLozinka())){
-//            return false;
-//        }
-//
-//        // dodatak za zadatak 2
-//        String password = korisnikPromenaLozinkeDto.getLozinka();
-//        if (!korisnikPromenaLozinkeDto.getLozinka().equals("")) {
-//            password = passwordEncoder.encode(korisnikPromenaLozinkeDto.getLozinka());
-//        }
-//
-//        korisnik.setLozinka(password);
-//
-//        userRepository.save(korisnik);
-//
-//        return true;
-//    }
+    @Override
+    public Optional<User> findByEmail(String email) {
+        Optional<User> user = userRepository.findFirstByeMail(email);
+        return user;
+    }
+
+    @Override
+    public Page<User> getAll(int pageNo) {
+        return userRepository.findAll(PageRequest.of(pageNo,1));
+    }
+
+    @Override
+    public Optional<User> findOneById(Long id) {
+        return userRepository.findOneById(id);
+
+    }
 }

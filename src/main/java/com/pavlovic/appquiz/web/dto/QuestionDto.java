@@ -3,15 +3,17 @@ package com.pavlovic.appquiz.web.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthUserDto {
+public class QuestionDto {
 
-    private String username;
+    private Long id;
 
-    private String password;
+    private String title;
 
-    private String email;
+    private List<AnswerDto> answerDtos;
+
 }
